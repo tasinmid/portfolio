@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tahmid Hasan — Builder. Leader. Athlete.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --yc:#f26522;
+  --yc-dark:#d4531a;
+  --yc-light:#fdf0eb;
+  --yc-mid:#f9d5c3;
+  --white:#ffffff;
+  --off:#fafaf8;
+  --surface:#f5f3ef;
+  --black:#111111;
+  --text:#1c1c1c;
+  --muted:#6b6560;
+  --border:#e8e3db;
+  --border-dark:#d4cfc6;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Outfit',sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--text);font-weight:300;line-height:1.7;overflow-x:hidden;cursor:none}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--off)}
+::-webkit-scrollbar-thumb{background:var(--yc);border-radius:2px}
+
+/* CURSOR */
+.cur{position:fixed;width:10px;height:10px;background:var(--yc);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;mix-blend-mode:multiply}
+.cur-f{position:fixed;width:32px;height:32px;border:1.5px solid rgba(242,101,34,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .14s var(--ease),top .14s var(--ease),width .3s,height .3s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:rgba(255,255,255,0);backdrop-filter:blur(0px)}
+nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:.9rem 4rem;box-shadow:0 1px 20px rgba(0,0,0,0.05)}
+.nav-logo{font-family:var(--serif);font-size:1.3rem;color:var(--black);text-decoration:none;letter-spacing:-.02em;font-weight:700}
+.nav-logo span{color:var(--yc)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:400;transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--yc);transition:width .3s var(--ease)}
+.nav-links a:hover{color:var(--black)}
+.nav-links a:hover::after{width:100%}
+.nav-hire{padding:.5rem 1.2rem;background:var(--yc);color:var(--white);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;font-weight:600;transition:all .25s;border:1.5px solid var(--yc)}
+.nav-hire:hover{background:transparent;color:var(--yc)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--black);transition:all .3s}
+.mob-menu{display:none;position:fixed;inset:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem;backdrop-filter:blur(20px)}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:var(--serif);font-size:2.8rem;color:var(--black);text-decoration:none;transition:color .2s}
+.mob-menu a:hover{color:var(--yc)}
+.mob-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;font-size:1.8rem;cursor:none;color:var(--black)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 4rem 5rem;position:relative;overflow:hidden;background:var(--white)}
+.hero-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-deco-circle{position:absolute;border-radius:50%;border:1px solid rgba(242,101,34,0.08)}
+.hero-deco-circle:nth-child(1){width:700px;height:700px;top:-200px;right:-150px;animation:spin 60s linear infinite}
+.hero-deco-circle:nth-child(2){width:400px;height:400px;top:-50px;right:50px;animation:spin 40s linear infinite reverse}
+.hero-deco-circle:nth-child(3){width:1000px;height:1000px;top:-300px;right:-350px;animation:spin 80s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.hero-deco-blob{position:absolute;top:10%;right:5%;width:480px;height:480px;background:radial-gradient(ellipse,rgba(242,101,34,0.07) 0%,transparent 70%);border-radius:50%;animation:breathe 8s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.hero-deco-line{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--yc),transparent)}
+
+.hero-wrap{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 440px;gap:5rem;align-items:center;position:relative;z-index:1}
+.h-eyebrow{display:inline-flex;align-items:center;gap:.75rem;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--yc);margin-bottom:1.5rem;opacity:0;animation:up .8s var(--ease) .2s forwards}
+.h-eyebrow::before{content:'';width:2rem;height:1px;background:var(--yc)}
+.h-name{font-family:var(--serif);font-size:clamp(3.5rem,7vw,7rem);line-height:1.0;letter-spacing:-.03em;font-weight:900;color:var(--black);margin-bottom:.5rem;opacity:0;animation:up .9s var(--ease) .35s forwards}
+.h-name em{font-style:italic;color:var(--yc);font-weight:400}
+.h-sub{font-size:1.05rem;color:var(--muted);max-width:500px;line-height:1.9;margin-bottom:2rem;font-weight:300;opacity:0;animation:up .8s var(--ease) .5s forwards}
+.h-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2.5rem;opacity:0;animation:up .8s var(--ease) .6s forwards}
+.h-tag{padding:.28rem .85rem;border:1px solid var(--border-dark);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-radius:100px;background:var(--white);transition:all .25s}
+.h-tag:hover{border-color:var(--yc);color:var(--yc);background:var(--yc-light)}
+.h-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:up .8s var(--ease) .7s forwards}
+.btn-a{padding:.8rem 2rem;background:var(--yc);color:var(--white);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;font-family:var(--sans);text-decoration:none;border:1.5px solid var(--yc);transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-a:hover{background:var(--yc-dark);border-color:var(--yc-dark)}
+.btn-b{padding:.8rem 2rem;background:transparent;color:var(--black);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400;font-family:var(--sans);text-decoration:none;border:1.5px solid var(--border-dark);transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-b:hover{border-color:var(--yc);color:var(--yc)}
+.h-stats{display:flex;gap:3rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);opacity:0;animation:up .8s var(--ease) .9s forwards}
+.h-stat label{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yc);margin-bottom:.3rem}
+.h-stat span{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--black)}
+
+/* Photo card */
+.photo-wrap{opacity:0;animation:fadein 1s var(--ease) .5s forwards;position:relative}
+.photo-card{position:relative;width:400px;height:500px;margin:0 auto}
+.photo-outer{position:absolute;inset:0;border:1px solid var(--border);background:var(--surface)}
+.photo-inner{position:absolute;top:20px;left:20px;right:-20px;bottom:-20px;border:1px solid var(--yc-mid);z-index:-1}
+.photo-body{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:linear-gradient(145deg,var(--off) 0%,var(--surface) 100%);overflow:hidden}
+.photo-img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.15);transition:transform .5s var(--ease)}
+.photo-card:hover .photo-img{transform:scale(1.22)}
+.photo-init{font-family:var(--serif);font-size:6rem;font-weight:900;color:var(--yc);opacity:.7;line-height:1}
+.photo-hint{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.photo-badge{position:absolute;bottom:-1rem;right:-1rem;background:var(--yc);color:var(--white);padding:.7rem 1.1rem;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;box-shadow:0 8px 24px rgba(242,101,34,0.25)}
+.photo-badge-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#fff;margin-right:.5rem;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* SCROLL HINT */
+.scroll-h{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadein 1s 1.6s forwards}
+.scroll-h span{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--yc),transparent);animation:scrl 2s ease-in-out infinite}
+@keyframes scrl{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.4;transform:scaleY(.5)}}
+
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+
+/* MARQUEE */
+.ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--yc-light);padding:.9rem 0;overflow:hidden}
+.ticker-track{display:flex;gap:2.5rem;width:max-content;animation:ticker 28s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{display:flex;align-items:center;gap:.75rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yc-dark);white-space:nowrap;font-weight:500}
+.ticker-sep{width:4px;height:4px;border-radius:50%;background:var(--yc);flex-shrink:0}
+
+/* SECTIONS */
+.sec{padding:7rem 4rem}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec-label{display:inline-flex;align-items:center;gap:.75rem;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yc);margin-bottom:.75rem}
+.sec-label::before{content:'';width:2rem;height:1px;background:var(--yc)}
+.sec-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);line-height:1.1;letter-spacing:-.02em;font-weight:700;color:var(--black);margin-bottom:1rem}
+.sec-title em{font-style:italic;color:var(--yc);font-weight:400}
+.sec-desc{color:var(--muted);font-size:1rem;max-width:500px;line-height:1.9}
+
+/* ABOUT */
+#about{background:var(--off)}
+.about-g{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-body{color:var(--muted);font-size:1rem;line-height:2;margin-bottom:1.25rem}
+.about-body strong{color:var(--yc);font-weight:500}
+.about-quote{border-left:3px solid var(--yc);padding:1.25rem 1.5rem;background:var(--white);margin:2rem 0;font-family:var(--serif);font-size:1.2rem;line-height:1.6;color:var(--black);font-style:italic;box-shadow:0 2px 20px rgba(0,0,0,.04)}
+.roles-g{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.role-p{display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1px solid var(--border);background:var(--white);transition:all .3s;position:relative;overflow:hidden}
+.role-p::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--yc);transform:scaleY(0);transition:transform .3s}
+.role-p:hover{border-color:rgba(242,101,34,.3);box-shadow:0 4px 16px rgba(242,101,34,.07);transform:translateX(3px)}
+.role-p:hover::before{transform:scaleY(1)}
+.role-dot{width:6px;height:6px;border-radius:50%;background:var(--yc);flex-shrink:0}
+.role-txt strong{display:block;font-size:.82rem;font-weight:600;color:var(--black)}
+.role-txt span{font-size:.7rem;color:var(--muted)}
+
+/* WORK */
+#work{background:var(--white)}
+.ventures-g{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:3rem}
+.v-card{border:1px solid var(--border);padding:2.25rem;background:var(--white);transition:all .35s var(--ease);position:relative;overflow:hidden;cursor:none}
+.v-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--yc),var(--yc-dark));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.v-card:hover{box-shadow:0 12px 48px rgba(242,101,34,.09);border-color:rgba(242,101,34,.25);transform:translateY(-3px)}
+.v-card:hover::after{transform:scaleX(1)}
+.v-badge{display:inline-block;padding:.25rem .75rem;background:var(--yc-light);color:var(--yc-dark);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:1rem;border-radius:100px}
+.v-icon{font-size:2rem;margin-bottom:1rem;color:var(--yc)}
+.v-name{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--black);margin-bottom:.6rem;line-height:1.2}
+.v-desc{font-size:.88rem;color:var(--muted);line-height:1.85}
+.v-card.wide{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;background:linear-gradient(135deg,var(--yc-light) 0%,var(--white) 60%);border:1px solid var(--yc-mid)}
+.v-card.wide .v-name{font-size:2rem}
+.v-meta{display:flex;flex-direction:column;gap:.75rem}
+.v-meta-item{padding:1rem 1.25rem;background:rgba(255,255,255,.7);border:1px solid rgba(242,101,34,.15)}
+.v-meta-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yc);margin-bottom:.2rem}
+.v-meta-val{font-size:.9rem;color:var(--black);font-weight:500}
+
+/* ACHIEVEMENTS */
+#achievements{background:var(--off)}
+.ach-head{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3.5rem}
+.ach-list{display:flex;flex-direction:column}
+.ach-row{display:grid;grid-template-columns:72px 1fr auto;gap:2rem;align-items:start;padding:1.75rem 0;border-bottom:1px solid var(--border);transition:all .3s;cursor:none;position:relative;overflow:hidden}
+.ach-row:first-child{border-top:1px solid var(--border)}
+.ach-row::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--yc-light),transparent);opacity:0;transition:opacity .3s}
+.ach-row:hover::before{opacity:1}
+.ach-n{font-family:var(--serif);font-size:2.8rem;color:var(--border-dark);font-weight:900;line-height:1;transition:color .3s;position:relative;z-index:1}
+.ach-row:hover .ach-n{color:var(--yc)}
+.ach-c{position:relative;z-index:1}
+.ach-title{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--black);margin-bottom:.35rem}
+.ach-desc{font-size:.87rem;color:var(--muted);line-height:1.8}
+.ach-tag{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--yc);font-weight:600;padding:.25rem .7rem;background:var(--yc-light);border-radius:100px;white-space:nowrap;align-self:center;position:relative;z-index:1}
+
+/* SPORTS */
+#sports{background:var(--white)}
+.sports-head{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3.5rem}
+.sports-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.sp-card{background:var(--white);padding:2.5rem 1.75rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.85rem;transition:all .3s;cursor:none}
+.sp-card:hover{background:var(--yc-light)}
+.sp-icon{width:60px;height:60px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.6rem;transition:all .3s}
+.sp-card:hover .sp-icon{border-color:var(--yc);box-shadow:0 0 0 4px var(--yc-light)}
+.sp-name{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--black)}
+.sp-role{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--yc);font-weight:600}
+.sp-desc{font-size:.82rem;color:var(--muted);line-height:1.75}
+
+/* SKILLS */
+#skills{background:var(--off)}
+.skills-layout{display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start}
+.skills-r{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.sk-group{padding:1.75rem;border:1px solid var(--border);background:var(--white);transition:all .3s}
+.sk-group:hover{border-color:rgba(242,101,34,.3);box-shadow:0 4px 20px rgba(242,101,34,.06)}
+.sk-head{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--yc);font-weight:600;margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem}
+.sk-head::after{content:'';flex:1;height:1px;background:var(--border)}
+.sk-list{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.sk-list li{font-size:.87rem;color:var(--muted);display:flex;align-items:center;gap:.5rem;transition:color .2s}
+.sk-list li:hover{color:var(--black)}
+.sk-list li::before{content:'→';color:var(--yc);font-size:.7rem;flex-shrink:0}
+
+/* CONTACT */
+#contact{background:var(--black)}
+.contact-g{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-big{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.1;letter-spacing:-.02em;font-weight:900;color:var(--white);margin-bottom:1.5rem}
+.contact-big em{font-style:italic;color:var(--yc);font-weight:400}
+.contact-sub{color:rgba(255,255,255,.45);font-size:1rem;line-height:1.9;margin-bottom:1.5rem}
+.contact-email{display:block;font-family:var(--serif);font-size:clamp(.95rem,2vw,1.4rem);color:var(--yc);text-decoration:none;margin-bottom:2rem;transition:opacity .3s;word-break:break-all}
+.contact-email:hover{opacity:.7}
+.contact-links{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.07)}
+.c-link{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;background:var(--black);color:rgba(255,255,255,.5);text-decoration:none;font-size:.87rem;transition:all .3s}
+.c-link:hover{background:rgba(242,101,34,.08);color:var(--white)}
+.c-link-ico{width:22px;color:var(--yc);font-size:1rem;font-weight:700;text-align:center;flex-shrink:0}
+.c-link-lbl{flex:1}
+.c-link-arr{color:rgba(255,255,255,.15);transition:all .3s}
+.c-link:hover .c-link-arr{color:var(--yc);transform:translateX(4px)}
+.status-box{margin-top:1.25rem;padding:1.25rem;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02)}
+.status-box-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--yc);margin-bottom:.75rem}
+.status-dot-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.35rem}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.4)}50%{box-shadow:0 0 0 6px rgba(74,222,128,0)}}
+.status-dot-text{font-size:.9rem;color:rgba(255,255,255,.7)}
+.status-types{font-size:.78rem;color:rgba(255,255,255,.3);margin-top:.2rem}
+
+/* FOOTER */
+footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+.f-logo{font-family:var(--serif);font-size:1rem;color:rgba(255,255,255,.3)}
+.f-logo span{color:var(--yc)}
+.f-copy{font-size:.7rem;color:rgba(255,255,255,.2);letter-spacing:.05em}
+.f-roles{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+
+/* DIVIDER */
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--yc),transparent)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}.rd4{transition-delay:.4s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav,nav.scrolled{padding:1rem 2rem}
+  .nav-links,.nav-hire{display:none}
+  .hamburger{display:flex}
+  #hero{padding:7rem 2rem 4rem}
+  .hero-wrap{grid-template-columns:1fr;gap:3rem}
+  .photo-wrap{order:-1}
+  .photo-card{width:280px;height:350px}
+  .photo-init{font-size:4rem}
+  .h-stats{flex-wrap:wrap;gap:1.5rem}
+  .about-g{grid-template-columns:1fr;gap:2.5rem}
+  .ventures-g{grid-template-columns:1fr}
+  .v-card.wide{grid-column:span 1;display:block}
+  .ach-head,.sports-head{grid-template-columns:1fr;gap:1.5rem}
+  .ach-row{grid-template-columns:52px 1fr;gap:1rem}
+  .ach-tag{display:none}
+  .sports-g{grid-template-columns:1fr 1fr}
+  .skills-layout{grid-template-columns:1fr;gap:2.5rem}
+  .contact-g{grid-template-columns:1fr;gap:3rem}
+  .sec{padding:5rem 2rem}
+  footer{padding:1.5rem 2rem;flex-direction:column;text-align:center}
+}
+@media(max-width:600px){
+  .h-name{font-size:2.8rem}
+  .roles-g,.skills-r{grid-template-columns:1fr}
+  .sports-g{grid-template-columns:1fr}
+  .ach-n{font-size:2rem}
+  .contact-big{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-f" id="curf"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">Tahmid<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#achievements">Wins</a></li>
+    <li><a href="#sports">Sports</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:ceo@solven.app" class="nav-hire">Contact Me</a>
+  <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="#about">About</a>
+  <a href="#work">Work</a>
+  <a href="#achievements">Wins</a>
+  <a href="#sports">Sports</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-deco">
+    <div class="hero-deco-circle"></div>
+    <div class="hero-deco-circle"></div>
+    <div class="hero-deco-circle"></div>
+    <div class="hero-deco-blob"></div>
+    <div class="hero-deco-line"></div>
+  </div>
+  <div class="hero-wrap">
+    <div>
+      <div class="h-eyebrow">Based in Bangladesh &nbsp;·&nbsp; Open to Opportunities</div>
+      <h1 class="h-name">Tahmid<br><em>Hasan.</em></h1>
+      <p class="h-sub">Builder, leader, and multidisciplinary force — turning ideas into ventures, communities into movements, and every arena into a stage.</p>
+      <div class="h-tags">
+        <span class="h-tag">CEO · Retain</span>
+        <span class="h-tag">MD · ESI</span>
+        <span class="h-tag">AI Developer</span>
+        <span class="h-tag">Debater</span>
+        <span class="h-tag">Athlete</span>
+        <span class="h-tag">Mentor</span>
+        <span class="h-tag">Freelancer</span>
+        <span class="h-tag">Chief Organiser</span>
+      </div>
+      <div class="h-btns">
+        <a href="#work" class="btn-a">View My Work →</a>
+        <a href="#contact" class="btn-b">Get in Touch</a>
+      </div>
+      <div class="h-stats">
+        <div class="h-stat"><label>Agency</label><span>Retain</span></div>
+        <div class="h-stat"><label>Organisation</label><span>ESI</span></div>
+        <div class="h-stat"><label>Sports</label><span>3 Teams</span></div>
+        <div class="h-stat"><label>Mode</label><span>Building</span></div>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <div class="photo-card">
+        <div class="photo-outer">
+          <div class="photo-body">
+            <img src="tahmid.jpeg" alt="Tahmid Hasan" class="photo-img" fetchpriority="high" decoding="async">
+          </div>
+        </div>
+        <div class="photo-inner"></div>
+        <div class="photo-badge"><span class="photo-badge-dot"></span>Tahmid Hasan</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-h">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-sep"></span>CEO · Retain Agency</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>AI Automation Dev</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>MD · ElevateSphere Initiatives</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Chief Organiser</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Hackathon Winner</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Hackathon Mentor</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Competitive Debater</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Basketball Player</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Kabaddi Athlete</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Table Tennis</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>CEO · Retain Agency</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>AI Automation Dev</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>MD · ElevateSphere Initiatives</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Chief Organiser</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Hackathon Winner</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Hackathon Mentor</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Competitive Debater</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Basketball Player</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Kabaddi Athlete</div>
+    <div class="ticker-item"><span class="ticker-sep"></span>Table Tennis</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="sec-inner">
+    <div class="about-g">
+      <div>
+        <div class="sec-label reveal">About</div>
+        <h2 class="sec-title reveal rd1">Many hats,<br>one <em>vision.</em></h2>
+        <p class="about-body reveal rd2">I'm Tahmid Hasan — a <strong>CEO, Managing Director, AI automation developer, freelancer, athlete, debater, and mentor</strong> who thrives at the intersection of technology, leadership, and competition.</p>
+        <p class="about-body reveal rd2">I lead <strong>Retain</strong>, an AI-first agency deploying intelligent employees that help businesses retain customers and grow lifetime value. As <strong>MD of ElevateSphere Initiatives</strong>, I build communities and programmes that elevate ambitious young people.</p>
+        <blockquote class="about-quote reveal rd3">"The best leaders don't just manage — they play, compete, mentor, and create without apology."</blockquote>
+      </div>
+      <div class="reveal rd2">
+        <div class="roles-g">
+          <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>CEO</strong><span>Retain Agency</span></div></div>
+          <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>Managing Director</strong><span>ESI</span></div></div>
+          <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>AI Dev</strong><span>Freelance</span></div></div>
+          <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>Chief Organiser</strong><span>Events</span></div></div>
+          <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>Hackathon Mentor</strong><span>Youth Tech</span></div></div>
+          <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>Debater</strong><span>Competitive</span></div></div>
+          <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>Basketball</strong><span>Team Player</span></div></div>
+          <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>Kabaddi & TT</strong><span>Athlete</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WORK -->
+<section id="work" class="sec">
+  <div class="sec-inner">
+    <div class="sec-label reveal">Work & Ventures</div>
+    <h2 class="sec-title reveal rd1">What I <em>build</em> & lead.</h2>
+    <p class="sec-desc reveal rd2">From AI agencies to youth organisations — here's how I spend my energy.</p>
+    <div class="ventures-g">
+      <div class="v-card wide reveal rd1">
+        <div>
+          <div class="v-badge">AI Agency · CEO & Founder</div>
+          <div class="v-icon">⚡</div>
+          <div class="v-name">Retain</div>
+          <p class="v-desc">An AI-first agency that deploys intelligent AI employees to help businesses retain customers and increase lifetime value — replacing outdated retention playbooks with autonomous, always-on systems that actually work at scale.</p>
+        </div>
+        <div class="v-meta">
+          <div class="v-meta-item"><div class="v-meta-label">Focus</div><div class="v-meta-val">Customer Retention via AI Employees</div></div>
+          <div class="v-meta-item"><div class="v-meta-label">Stack</div><div class="v-meta-val">LLMs · Automation · AI Agents</div></div>
+          <div class="v-meta-item"><div class="v-meta-label">Stage</div><div class="v-meta-val">Active & Growing</div></div>
+        </div>
+      </div>
+      <div class="v-card reveal rd2">
+        <div class="v-badge">Organisation · MD</div>
+        <div class="v-icon">◈</div>
+        <div class="v-name">ElevateSphere<br>Initiatives</div>
+        <p class="v-desc">ESI is a youth-led initiative I lead as MD — creating platforms, programmes, and events that elevate ambitious young people across Bangladesh and beyond.</p>
+      </div>
+      <div class="v-card reveal rd3">
+        <div class="v-badge">Freelance · Developer</div>
+        <div class="v-icon">⚙</div>
+        <div class="v-name">AI Automation<br>Development</div>
+        <p class="v-desc">Building custom AI pipelines, agents, and intelligent workflows for clients — using LLM orchestration, OpenRouter, and cutting-edge automation stacks.</p>
+      </div>
+      <div class="v-card reveal rd2">
+        <div class="v-badge">Leadership · Events</div>
+        <div class="v-icon">◉</div>
+        <div class="v-name">Chief Organiser</div>
+        <p class="v-desc">Spearheaded large-scale events — managing logistics, teams, sponsors, and execution to deliver high-impact, memorable experiences from the ground up.</p>
+      </div>
+      <div class="v-card reveal rd3">
+        <div class="v-badge">Mentorship · Hackathons</div>
+        <div class="v-icon">◎</div>
+        <div class="v-name">Hackathon<br>Mentor</div>
+        <p class="v-desc">Guiding teams from ideation to deployment at youth hackathons — helping the next generation of builders think clearly, build fast, and ship with purpose.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="sec">
+  <div class="sec-inner">
+    <div class="ach-head">
+      <div>
+        <div class="sec-label reveal">Achievements</div>
+        <h2 class="sec-title reveal rd1">Milestones<br>that <em>matter.</em></h2>
+      </div>
+      <p class="sec-desc reveal rd2">A track record built across technology, leadership, sport, and the stage.</p>
+    </div>
+    <div class="ach-list">
+      <div class="ach-row reveal">
+        <div class="ach-n">01</div>
+        <div class="ach-c"><div class="ach-title">Hackathon Winner</div><p class="ach-desc">Competed and won at hackathons — building functional, innovative solutions under intense time pressure alongside high-performing teams.</p></div>
+        <span class="ach-tag">Hacking</span>
+      </div>
+      <div class="ach-row reveal rd1">
+        <div class="ach-n">02</div>
+        <div class="ach-c"><div class="ach-title">Chief Organiser — Major Event</div><p class="ach-desc">Led end-to-end organisation of a flagship event — from planning and partnerships to on-ground execution for hundreds of attendees.</p></div>
+        <span class="ach-tag">Events</span>
+      </div>
+      <div class="ach-row reveal rd2">
+        <div class="ach-n">03</div>
+        <div class="ach-c"><div class="ach-title">Hackathon Mentor</div><p class="ach-desc">Mentored emerging builders at youth tech hackathons — helping teams shape ideas, validate MVPs, and build with purpose and clarity.</p></div>
+        <span class="ach-tag">Mentoring</span>
+      </div>
+      <div class="ach-row reveal rd3">
+        <div class="ach-n">04</div>
+        <div class="ach-c"><div class="ach-title">Founded & Scaled Retain Agency</div><p class="ach-desc">Built Retain from the ground up — now actively helping real businesses grow customer LTV with autonomous AI systems.</p></div>
+        <span class="ach-tag">Founding</span>
+      </div>
+      <div class="ach-row reveal rd4">
+        <div class="ach-n">05</div>
+        <div class="ach-c"><div class="ach-title">MD of ElevateSphere Initiatives</div><p class="ach-desc">Grew ESI's reach as MD — building structured programmes, events, and mentorship systems that open real doors for ambitious youth.</p></div>
+        <span class="ach-tag">Leadership</span>
+      </div>
+      <div class="ach-row reveal rd1">
+        <div class="ach-n">06</div>
+        <div class="ach-c"><div class="ach-title">Multi-Sport Team Athlete</div><p class="ach-desc">Active player across basketball, kabaddi, and table tennis — representing discipline, competitive grit, and team strategy on the field.</p></div>
+        <span class="ach-tag">Sports</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SPORTS -->
+<section id="sports" class="sec">
+  <div class="sec-inner">
+    <div class="sports-head">
+      <div>
+        <div class="sec-label reveal">Sports & Stage</div>
+        <h2 class="sec-title reveal rd1">On the court,<br>on the <em>stage.</em></h2>
+      </div>
+      <p class="sec-desc reveal rd2">I compete as hard off-screen as on it — in sport, debate, and mentorship alike.</p>
+    </div>
+    <div class="sports-g">
+      <div class="sp-card reveal">
+        <div class="sp-icon">🏀</div>
+        <div class="sp-name">Basketball</div>
+        <div class="sp-role">Team Player</div>
+        <p class="sp-desc">Competitive, disciplined, and a natural at reading the game. Basketball taught me teamwork, strategy, and performing under pressure.</p>
+      </div>
+      <div class="sp-card reveal rd1">
+        <div class="sp-icon">🤸</div>
+        <div class="sp-name">Kabaddi</div>
+        <div class="sp-role">Athlete</div>
+        <p class="sp-desc">Endurance, agility, and collective strategy on the kabaddi field. A sport of physical and mental resilience.</p>
+      </div>
+      <div class="sp-card reveal rd2">
+        <div class="sp-icon">🏓</div>
+        <div class="sp-name">Table Tennis</div>
+        <div class="sp-role">Competitive Player</div>
+        <p class="sp-desc">Quick reflexes and sharp focus. TT has sharpened my ability to stay calm and decisive under rapid fire conditions.</p>
+      </div>
+      <div class="sp-card reveal rd3">
+        <div class="sp-icon">🎤</div>
+        <div class="sp-name">Debate</div>
+        <div class="sp-role">Competitive Debater</div>
+        <p class="sp-desc">Structured argumentation and persuasive delivery. Debate is where my leadership voice was first truly forged.</p>
+      </div>
+      <div class="sp-card reveal rd2">
+        <div class="sp-icon">💡</div>
+        <div class="sp-name">Mentorship</div>
+        <div class="sp-role">Hackathon & Career</div>
+        <p class="sp-desc">Guiding emerging talent from hackathon floors to career paths as a trusted mentor who invests in the people behind the ideas.</p>
+      </div>
+      <div class="sp-card reveal rd3">
+        <div class="sp-icon">🎙️</div>
+        <div class="sp-name">Public Speaking</div>
+        <div class="sp-role">Events & Panels</div>
+        <p class="sp-desc">Commanding presence on stage — panels, pitches, and keynote moments with clarity, authority, and authentic energy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills" class="sec">
+  <div class="sec-inner">
+    <div class="skills-layout">
+      <div>
+        <div class="sec-label reveal">Skills</div>
+        <h2 class="sec-title reveal rd1">What I<br>bring to<br>the <em>table.</em></h2>
+        <p class="sec-desc reveal rd2" style="margin-top:.75rem">A diverse toolkit forged across technology, strategy, and human leadership.</p>
+      </div>
+      <div class="skills-r">
+        <div class="sk-group reveal">
+          <div class="sk-head">Technology</div>
+          <ul class="sk-list">
+            <li>AI Automation & Agents</li>
+            <li>LLM Orchestration</li>
+            <li>Prompt Engineering</li>
+            <li>OpenRouter / APIs</li>
+            <li>No-code / Low-code</li>
+            <li>Workflow Automation</li>
+            <li>Agentic Systems</li>
+          </ul>
+        </div>
+        <div class="sk-group reveal rd1">
+          <div class="sk-head">Leadership</div>
+          <ul class="sk-list">
+            <li>Strategic Planning</li>
+            <li>Team Building</li>
+            <li>Event Organisation</li>
+            <li>Stakeholder Management</li>
+            <li>Community Growth</li>
+            <li>Youth Mentorship</li>
+            <li>Programme Design</li>
+          </ul>
+        </div>
+        <div class="sk-group reveal rd2">
+          <div class="sk-head">Business</div>
+          <ul class="sk-list">
+            <li>Agency Operations</li>
+            <li>Customer Retention</li>
+            <li>Freelance Consulting</li>
+            <li>Sales & Pitching</li>
+            <li>Product Thinking</li>
+            <li>Brand Strategy</li>
+            <li>LTV Optimisation</li>
+          </ul>
+        </div>
+        <div class="sk-group reveal rd3">
+          <div class="sk-head">Soft Skills</div>
+          <ul class="sk-list">
+            <li>Debate & Persuasion</li>
+            <li>Public Speaking</li>
+            <li>Critical Thinking</li>
+            <li>Team Coordination</li>
+            <li>Decision Making</li>
+            <li>Adaptability</li>
+            <li>Creative Problem Solving</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="sec-inner">
+    <div class="contact-g">
+      <div>
+        <div class="sec-label reveal" style="color:rgba(242,101,34,.9)">Contact</div>
+        <div class="contact-big reveal rd1">Let's build<br>something<br><em>great.</em></div>
+        <p class="contact-sub reveal rd2">Whether you need an AI automation partner, a speaker, a mentor, or just want to connect — I'm open to meaningful conversations.</p>
+        <a href="mailto:ceo@solven.app" class="contact-email reveal rd3">ceo@solven.app</a>
+        <a href="tel:+8801774087180" class="contact-email reveal rd3" style="margin-top: -1.2rem; margin-bottom: 2rem;">+880 1774-087180</a>
+        <div class="reveal rd4" style="display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="mailto:ceo@solven.app" class="btn-a">Send an Email →</a>
+          <a href="tel:+8801774087180" class="btn-b">Call Me</a>
+        </div>
+      </div>
+      <div class="reveal rd2">
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/tasinmid/" target="_blank" rel="noopener noreferrer" class="c-link"><span class="c-link-ico">in</span><span class="c-link-lbl">LinkedIn — Tahmid Hasan</span><span class="c-link-arr">→</span></a>
+          <a href="https://www.instagram.com/tasinmid" target="_blank" rel="noopener noreferrer" class="c-link"><span class="c-link-ico"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; transform:translateY(-1px)"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span><span class="c-link-lbl">Instagram</span><span class="c-link-arr">→</span></a>
+          <a href="https://github.com/tasinmid/" target="_blank" rel="noopener noreferrer" class="c-link"><span class="c-link-ico">⌥</span><span class="c-link-lbl">GitHub</span><span class="c-link-arr">→</span></a>
+          <a href="https://retain.solven.app/home" target="_blank" rel="noopener noreferrer" class="c-link"><span class="c-link-ico">⚡</span><span class="c-link-lbl">Retain Agency</span><span class="c-link-arr">→</span></a>
+          <a href="https://www.facebook.com/share/1DYQuep4eF/" target="_blank" rel="noopener noreferrer" class="c-link"><span class="c-link-ico">◈</span><span class="c-link-lbl">ElevateSphere Initiatives</span><span class="c-link-arr">→</span></a>
+        </div>
+        <div class="status-box">
+          <div class="status-box-label">Current Status</div>
+          <div class="status-dot-row"><span class="status-dot"></span><span class="status-dot-text">Open to new projects</span></div>
+          <div class="status-types">AI Automation · Consulting · Mentorship · Speaking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">Tahmid<span>.</span></div>
+  <div class="f-copy">© 2026 Tahmid Hasan · All rights reserved</div>
+  <div class="f-roles">CEO · MD · Builder · Athlete · Mentor</div>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cur'),curf=document.getElementById('curf');
+let mx=0,my=0,fx=0,fy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function af(){fx+=(mx-fx)*.13;fy+=(my-fy)*.13;curf.style.left=fx+'px';curf.style.top=fy+'px';requestAnimationFrame(af)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';curf.style.width='48px';curf.style.height='48px'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';curf.style.width='32px';curf.style.height='32px'});
+});
+if('ontouchstart' in window){cur.style.display='none';curf.style.display='none';document.body.style.cursor='auto'}
+
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+// Mobile menu
+const ham=document.getElementById('ham'),mob=document.getElementById('mobMenu'),mc=document.getElementById('mobClose');
+ham.addEventListener('click',()=>mob.classList.add('open'));
+mc.addEventListener('click',()=>mob.classList.remove('open'));
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mob.classList.remove('open')));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}}));
+
+// Scroll reveal
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
