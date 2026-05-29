@@ -158,6 +158,22 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(24px);border
 .v-meta-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yc);margin-bottom:.2rem}
 .v-meta-val{font-size:.9rem;color:var(--black);font-weight:500}
 
+/* GALLERY */
+#gallery{background:var(--white)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:280px;gap:2rem;max-width:1200px;margin:3.5rem auto 0;grid-auto-flow:dense}
+.gallery-card{position:relative;overflow:hidden;border:1px solid var(--border);background:var(--surface);transition:border-color .3s,box-shadow .3s}
+.gallery-card:hover{border-color:var(--yc-mid);box-shadow:0 16px 40px rgba(242,101,34,0.08)}
+.gallery-img-wrap{width:100%;height:100%;overflow:hidden;position:relative}
+.gallery-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.gallery-card:hover .gallery-img{transform:scale(1.05)}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,0.85) 0%,rgba(17,17,17,0.3) 50%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0.9;transition:opacity .3s}
+.gallery-card:hover .gallery-overlay{opacity:1}
+.gallery-tag{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yc);font-weight:700;margin-bottom:.4rem;transform:translateY(8px);opacity:0;transition:transform .4s var(--ease),opacity .4s}
+.gallery-desc{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--white);line-height:1.3;transform:translateY(8px);opacity:0;transition:transform .4s var(--ease) .05s,opacity .4s .05s}
+.gallery-card:hover .gallery-tag,.gallery-card:hover .gallery-desc{transform:translateY(0);opacity:1}
+.g-double-w{grid-column:span 2}
+.g-double-h{grid-row:span 2}
+
 /* ACHIEVEMENTS */
 #achievements{background:var(--off)}
 .ach-head{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3.5rem}
@@ -258,6 +274,8 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
   .contact-g{grid-template-columns:1fr;gap:3rem}
   .sec{padding:5rem 2rem}
   footer{padding:1.5rem 2rem;flex-direction:column;text-align:center}
+  #gallery{padding:5rem 2rem}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:240px;gap:1.5rem}
 }
 @media(max-width:600px){
   .h-name{font-size:2.8rem}
@@ -265,6 +283,8 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
   .sports-g{grid-template-columns:1fr}
   .ach-n{font-size:2rem}
   .contact-big{font-size:2rem}
+  .gallery-grid{grid-template-columns:1fr;grid-auto-rows:280px}
+  .g-double-w,.g-double-h{grid-column:span 1;grid-row:span 1}
 }
 </style>
 </head>
@@ -279,6 +299,7 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#achievements">Wins</a></li>
     <li><a href="#sports">Sports</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -292,6 +313,7 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
   <button class="mob-close" id="mobClose">✕</button>
   <a href="#about">About</a>
   <a href="#work">Work</a>
+  <a href="#gallery">Gallery</a>
   <a href="#achievements">Wins</a>
   <a href="#sports">Sports</a>
   <a href="#skills">Skills</a>
@@ -449,6 +471,74 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
         <div class="v-icon">◎</div>
         <div class="v-name">Hackathon<br>Mentor</div>
         <p class="v-desc">Guiding teams from ideation to deployment at youth hackathons — helping the next generation of builders think clearly, build fast, and ship with purpose.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GALLERY -->
+<section id="gallery" class="sec">
+  <div class="sec-inner">
+    <div class="reveal">
+      <div class="sec-label">Gallery</div>
+      <h2 class="sec-title rd1">Life in <em>motion.</em></h2>
+    </div>
+    <div class="gallery-grid reveal rd2">
+      <div class="gallery-card g-double-h">
+        <div class="gallery-img-wrap">
+          <img src="basketball.jpeg" alt="Kissing the Basketball Championship Trophy" class="gallery-img" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-tag">Championship</div>
+            <div class="gallery-desc">Kissing the Basketball Championship Trophy</div>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-card g-double-w">
+        <div class="gallery-img-wrap">
+          <img src="orgmeeting.jpeg" alt="Shaping ESI's Vision" class="gallery-img" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-tag">Leadership</div>
+            <div class="gallery-desc">Shaping ESI's Vision & Strategy</div>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <div class="gallery-img-wrap">
+          <img src="hackathonmentor.jpeg" alt="Empowering Next-Gen Builders" class="gallery-img" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-tag">Mentorship</div>
+            <div class="gallery-desc">Empowering Next-Gen Builders</div>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-card g-double-h">
+        <div class="gallery-img-wrap">
+          <img src="painter.jpeg" alt="Expressions Beyond Tech" class="gallery-img" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-tag">Art & Focus</div>
+            <div class="gallery-desc">Expressions Beyond Tech</div>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <div class="gallery-img-wrap">
+          <img src="tabletennis.jpeg" alt="Kissing the Table Tennis Championship Trophy" class="gallery-img" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-tag">Championship</div>
+            <div class="gallery-desc">Kissing the Table Tennis Championship Trophy</div>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <div class="gallery-img-wrap">
+          <img src="kabaddiwin.jpeg" alt="Victory on the Kabaddi Field" class="gallery-img" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-tag">Championship</div>
+            <div class="gallery-desc">Victory on the Kabaddi Field</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -666,7 +756,7 @@ const cur=document.getElementById('cur'),curf=document.getElementById('curf');
 let mx=0,my=0,fx=0,fy=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
 (function af(){fx+=(mx-fx)*.13;fy+=(my-fy)*.13;curf.style.left=fx+'px';curf.style.top=fy+'px';requestAnimationFrame(af)})();
-document.querySelectorAll('a,button').forEach(el=>{
+document.querySelectorAll('a,button,.gallery-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';curf.style.width='48px';curf.style.height='48px'});
   el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';curf.style.width='32px';curf.style.height='32px'});
 });
