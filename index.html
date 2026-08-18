@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tahmid Hasan — Builder. Leader. Athlete.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -25,7 +25,8 @@
   --sans:'Outfit',sans-serif;
   --ease:cubic-bezier(0.25,0.46,0.45,0.94);
 }
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+section{scroll-margin-top:80px}
 body{font-family:var(--sans);background:var(--white);color:var(--text);font-weight:300;line-height:1.7;overflow-x:hidden;cursor:none}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:var(--off)}
@@ -174,20 +175,35 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(24px);border
 .g-double-w{grid-column:span 2}
 .g-double-h{grid-row:span 2}
 
-/* ACHIEVEMENTS */
-#achievements{background:var(--off)}
-.ach-head{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3.5rem}
-.ach-list{display:flex;flex-direction:column}
-.ach-row{display:grid;grid-template-columns:72px 1fr auto;gap:2rem;align-items:start;padding:1.75rem 0;border-bottom:1px solid var(--border);transition:all .3s;cursor:none;position:relative;overflow:hidden}
-.ach-row:first-child{border-top:1px solid var(--border)}
-.ach-row::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--yc-light),transparent);opacity:0;transition:opacity .3s}
-.ach-row:hover::before{opacity:1}
-.ach-n{font-family:var(--serif);font-size:2.8rem;color:var(--border-dark);font-weight:900;line-height:1;transition:color .3s;position:relative;z-index:1}
-.ach-row:hover .ach-n{color:var(--yc)}
-.ach-c{position:relative;z-index:1}
-.ach-title{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--black);margin-bottom:.35rem}
-.ach-desc{font-size:.87rem;color:var(--muted);line-height:1.8}
-.ach-tag{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--yc);font-weight:600;padding:.25rem .7rem;background:var(--yc-light);border-radius:100px;white-space:nowrap;align-self:center;position:relative;z-index:1}
+/* PROJECTS - EDITORIAL SHOWCASE */
+#projects{background:var(--white);position:relative}
+.projects-head{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3.5rem}
+.project-list{display:flex;flex-direction:column;border-top:1px solid var(--border)}
+.project-row{display:grid;grid-template-columns:70px 1.4fr 2.2fr auto;gap:2.5rem;align-items:center;padding:2.25rem 1.5rem;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:all .35s var(--ease);position:relative;overflow:hidden;cursor:none;background:var(--white)}
+.project-row::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--yc-light) 0%,rgba(253,240,235,0.3) 65%,transparent 100%);opacity:0;transform:translateX(-25px);transition:all .35s var(--ease);z-index:0}
+.project-row::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--yc);transform:scaleY(0);transition:transform .3s var(--ease);z-index:1}
+.project-row:hover::before{opacity:1;transform:translateX(0)}
+.project-row:hover::after{transform:scaleY(1)}
+.project-row:hover{padding-left:2.25rem}
+.p-index{font-family:var(--serif);font-size:2.2rem;font-weight:900;color:var(--border-dark);transition:color .3s;position:relative;z-index:1;line-height:1}
+.project-row:hover .p-index{color:var(--yc)}
+.p-identity{position:relative;z-index:1}
+.p-main-title{font-family:var(--serif);font-size:1.65rem;font-weight:700;color:var(--black);margin-bottom:.4rem;transition:color .25s;line-height:1.2}
+.project-row:hover .p-main-title{color:var(--yc-dark)}
+.p-type-tag{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--yc);font-weight:600;display:inline-flex;align-items:center;gap:.35rem}
+.p-badge-soon{background:rgba(242,101,34,0.1);color:var(--yc);display:inline-flex;align-items:center;gap:.4rem;padding:.2rem .6rem;border-radius:100px;border:1px solid rgba(242,101,34,0.25);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.badge-dot-soon{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--yc);animation:pulse-soon 1.8s infinite;flex-shrink:0}
+@keyframes pulse-soon{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(0.8)}}
+.p-content{position:relative;z-index:1}
+.p-summary{font-size:.88rem;color:var(--muted);line-height:1.8;margin-bottom:.75rem}
+.p-chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.p-chip{font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text);background:var(--surface);border:1px solid var(--border);padding:.2rem .55rem;border-radius:100px;font-weight:500;transition:all .25s}
+.project-row:hover .p-chip{border-color:var(--yc-mid);background:var(--white)}
+.p-action{position:relative;z-index:1;display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--black);padding:.7rem 1.35rem;border:1.5px solid var(--border-dark);background:var(--white);border-radius:100px;white-space:nowrap;transition:all .3s var(--ease)}
+.project-row:hover .p-action{background:var(--yc);color:var(--white);border-color:var(--yc);transform:translateX(4px);box-shadow:0 4px 16px rgba(242,101,34,0.25)}
+.p-action-arrow{font-size:.9rem;transition:transform .3s}
+.project-row:hover .p-action-arrow{transform:translateX(3px)}
+
 
 /* SPORTS */
 #sports{background:var(--white)}
@@ -252,6 +268,67 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
 .reveal.in{opacity:1;transform:none}
 .rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}.rd4{transition-delay:.4s}
 
+/* ===== COMPANIES / PREVIOUSLY WORKED WITH ===== */
+.companies-section{padding:2.25rem 0;background:var(--white);overflow:hidden;position:relative}
+.container-xl{max-width:1200px;margin-left:auto;margin-right:auto;padding:0 2rem}
+.section-centered{text-align:center}
+.companies-heading{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:var(--black);margin-bottom:1.5rem;letter-spacing:-.02em}
+.companies-heading em{font-style:italic;color:var(--yc);font-weight:400}
+.heading-underline-yc{position:relative;text-decoration:none;display:inline-block}
+.heading-underline-yc::after{content:'';position:absolute;bottom:-6px;left:0;width:55%;height:2px;background-color:var(--yc);transition:width .3s var(--ease)}
+.heading-underline-yc:hover::after{width:100%}
+
+.marquee-container{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);position:relative}
+.marquee-track{display:flex;width:max-content;user-select:none}
+.marquee-track:hover .marquee-group{animation-play-state:paused}
+.marquee-group{display:flex;align-items:center;flex-shrink:0;gap:2.5rem;padding-right:2.5rem;animation:marquee-scroll 30s linear infinite;will-change:transform}
+.marquee-group.reverse{animation:marquee-scroll-reverse 26s linear infinite}
+
+@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+@keyframes marquee-scroll-reverse{0%{transform:translateX(-100%)}100%{transform:translateX(0)}}
+
+.company-logo{filter:grayscale(100%) opacity(0.7);transition:filter .35s var(--ease),opacity .35s var(--ease),transform .35s var(--ease);object-fit:contain;flex-shrink:0}
+.company-logo:hover{filter:grayscale(0%) opacity(1);transform:scale(1.06)}
+.company-logo.no-select{user-select:none;-webkit-user-drag:none;pointer-events:none}
+
+.company-logo.size-xs{height:1.75rem}
+.company-logo.size-sm{height:2.2rem}
+.company-logo.size-md{height:3.2rem}
+.company-logo.size-lg{height:5.5rem}
+.company-logo.size-1{height:40px;margin-top:-.75rem}
+
+.desktop-marquee{display:block}
+.mobile-marquee{display:none}
+.marquee-row{margin-bottom:-.75rem}
+.marquee-row:last-child{margin-bottom:0}
+
+@media(max-width:768px){
+  .companies-section{padding:1.75rem 0}
+  .companies-heading{font-size:1.4rem;margin-bottom:1.1rem}
+  .marquee-group{gap:1.5rem;padding-right:1.5rem}
+  .company-logo.size-xs{height:1.3rem}
+  .company-logo.size-sm{height:1.6rem}
+  .company-logo.size-md{height:2.2rem}
+  .company-logo.size-lg{height:3.6rem}
+  .company-logo.size-1{height:28px;margin-top:-.45rem}
+  .company-logo.size-lg.no-select{height:3.8rem}
+  .company-logo[src*="company6.png"]{height:2.6rem}
+  .desktop-marquee{display:none}
+  .mobile-marquee{display:block}
+  .marquee-row{margin-bottom:-.5rem}
+}
+
+@media(max-width:480px){
+  .companies-section{padding:1.5rem 0}
+  .companies-heading{font-size:1.25rem;margin-bottom:1rem}
+  .marquee-group{gap:1.25rem;padding-right:1.25rem}
+  .company-logo.size-xs{height:1.1rem}
+  .company-logo.size-sm{height:1.35rem}
+  .company-logo.size-md{height:1.75rem}
+  .company-logo.size-lg{height:2.8rem}
+  .company-logo.size-1{height:22px;margin-top:-.35rem}
+}
+
 /* RESPONSIVE */
 @media(max-width:1024px){
   nav,nav.scrolled{padding:1rem 2rem}
@@ -266,9 +343,9 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
   .about-g{grid-template-columns:1fr;gap:2.5rem}
   .ventures-g{grid-template-columns:1fr}
   .v-card.wide{grid-column:span 1;display:block}
-  .ach-head,.sports-head{grid-template-columns:1fr;gap:1.5rem}
-  .ach-row{grid-template-columns:52px 1fr;gap:1rem}
-  .ach-tag{display:none}
+  .projects-head{grid-template-columns:1fr;gap:1.5rem}
+  .project-row{grid-template-columns:50px 1.2fr 1.8fr auto;gap:1.5rem;padding:2rem 1rem}
+  .sports-head{grid-template-columns:1fr;gap:1.5rem}
   .sports-g{grid-template-columns:1fr 1fr}
   .skills-layout{grid-template-columns:1fr;gap:2.5rem}
   .contact-g{grid-template-columns:1fr;gap:3rem}
@@ -277,11 +354,18 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
   #gallery{padding:5rem 2rem}
   .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:240px;gap:1.5rem}
 }
+@media(max-width:850px){
+  .project-row{grid-template-columns:40px 1fr;gap:1rem;padding:1.75rem 0.5rem}
+  .p-content{grid-column:2;margin-top:.25rem}
+  .p-action{grid-column:2;justify-self:start;margin-top:.5rem}
+}
 @media(max-width:600px){
+  .project-row{grid-template-columns:1fr;gap:.75rem;padding:1.5rem 0}
+  .p-index{display:none}
+  .p-content,.p-action{grid-column:1}
   .h-name{font-size:2.8rem}
   .roles-g,.skills-r{grid-template-columns:1fr}
   .sports-g{grid-template-columns:1fr}
-  .ach-n{font-size:2rem}
   .contact-big{font-size:2rem}
   .gallery-grid{grid-template-columns:1fr;grid-auto-rows:280px}
   .g-double-w,.g-double-h{grid-column:span 1;grid-row:span 1}
@@ -300,7 +384,7 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
     <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#achievements">Wins</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#sports">Sports</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -314,7 +398,7 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
   <a href="#about">About</a>
   <a href="#work">Work</a>
   <a href="#gallery">Gallery</a>
-  <a href="#achievements">Wins</a>
+  <a href="#projects">Projects</a>
   <a href="#sports">Sports</a>
   <a href="#skills">Skills</a>
   <a href="#contact">Contact</a>
@@ -420,6 +504,123 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
           <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>Debater</strong><span>Competitive</span></div></div>
           <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>Basketball</strong><span>Team Player</span></div></div>
           <div class="role-p"><span class="role-dot"></span><div class="role-txt"><strong>Kabaddi & TT</strong><span>Athlete</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PREVIOUSLY WORKED WITH -->
+<section id="worked-with" class="companies-section">
+  <div class="container-xl section-centered">
+    <div class="sec-label reveal" style="margin-bottom:0.35rem">Collaborations</div>
+    <h2 class="companies-heading reveal rd1"><span class="heading-underline-yc">Previously Worked <em>With.</em></span></h2>
+  </div>
+  
+  <!-- Desktop version (single row) - hidden on mobile -->
+  <div class="desktop-marquee">
+    <div class="marquee-container">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <img src="company1.png" alt="Company 1" class="company-logo size-1">
+          <img src="company2.jpg" alt="Company 2" class="company-logo size-xs">
+          <img src="company3.png" alt="Company 3" class="company-logo size-xs">
+          <img src="company4.png" alt="Company 4" class="company-logo size-xs">
+          <img src="company5.png" alt="Company 5" class="company-logo size-sm">
+          <img src="company6.png" alt="Company 6" class="company-logo size-md">
+          <img src="company7.png" alt="Company 7" class="company-logo size-lg no-select">
+          <img src="company8.png" alt="Company 8" class="company-logo size-sm">
+          <img src="company9.png" alt="Company 9" class="company-logo size-md">
+          <img src="company1.png" alt="Company 1" class="company-logo size-1">
+          <img src="company2.jpg" alt="Company 2" class="company-logo size-xs">
+          <img src="company3.png" alt="Company 3" class="company-logo size-xs">
+          <img src="company4.png" alt="Company 4" class="company-logo size-xs">
+          <img src="company5.png" alt="Company 5" class="company-logo size-sm">
+          <img src="company6.png" alt="Company 6" class="company-logo size-md">
+          <img src="company7.png" alt="Company 7" class="company-logo size-lg no-select">
+          <img src="company8.png" alt="Company 8" class="company-logo size-sm">
+          <img src="company9.png" alt="Company 9" class="company-logo size-md">
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <img src="company1.png" alt="Company 1" class="company-logo size-1">
+          <img src="company2.jpg" alt="Company 2" class="company-logo size-xs">
+          <img src="company3.png" alt="Company 3" class="company-logo size-xs">
+          <img src="company4.png" alt="Company 4" class="company-logo size-xs">
+          <img src="company5.png" alt="Company 5" class="company-logo size-sm">
+          <img src="company6.png" alt="Company 6" class="company-logo size-md">
+          <img src="company7.png" alt="Company 7" class="company-logo size-lg no-select">
+          <img src="company8.png" alt="Company 8" class="company-logo size-sm">
+          <img src="company9.png" alt="Company 9" class="company-logo size-md">
+          <img src="company1.png" alt="Company 1" class="company-logo size-1">
+          <img src="company2.jpg" alt="Company 2" class="company-logo size-xs">
+          <img src="company3.png" alt="Company 3" class="company-logo size-xs">
+          <img src="company4.png" alt="Company 4" class="company-logo size-xs">
+          <img src="company5.png" alt="Company 5" class="company-logo size-sm">
+          <img src="company6.png" alt="Company 6" class="company-logo size-md">
+          <img src="company7.png" alt="Company 7" class="company-logo size-lg no-select">
+          <img src="company8.png" alt="Company 8" class="company-logo size-sm">
+          <img src="company9.png" alt="Company 9" class="company-logo size-md">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile version (2 rows) - hidden on desktop -->
+  <div class="mobile-marquee">
+    <!-- Row 1: First 5 companies -->
+    <div class="marquee-container marquee-row">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <img src="company1.png" alt="Company 1" class="company-logo size-1">
+          <img src="company2.jpg" alt="Company 2" class="company-logo size-xs">
+          <img src="company3.png" alt="Company 3" class="company-logo size-xs">
+          <img src="company4.png" alt="Company 4" class="company-logo size-xs">
+          <img src="company5.png" alt="Company 5" class="company-logo size-sm">
+          <img src="company1.png" alt="Company 1" class="company-logo size-1">
+          <img src="company2.jpg" alt="Company 2" class="company-logo size-xs">
+          <img src="company3.png" alt="Company 3" class="company-logo size-xs">
+          <img src="company4.png" alt="Company 4" class="company-logo size-xs">
+          <img src="company5.png" alt="Company 5" class="company-logo size-sm">
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <img src="company1.png" alt="Company 1" class="company-logo size-1">
+          <img src="company2.jpg" alt="Company 2" class="company-logo size-xs">
+          <img src="company3.png" alt="Company 3" class="company-logo size-xs">
+          <img src="company4.png" alt="Company 4" class="company-logo size-xs">
+          <img src="company5.png" alt="Company 5" class="company-logo size-sm">
+          <img src="company1.png" alt="Company 1" class="company-logo size-1">
+          <img src="company2.jpg" alt="Company 2" class="company-logo size-xs">
+          <img src="company3.png" alt="Company 3" class="company-logo size-xs">
+          <img src="company4.png" alt="Company 4" class="company-logo size-xs">
+          <img src="company5.png" alt="Company 5" class="company-logo size-sm">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Row 2: Remaining 4 companies -->
+    <div class="marquee-container marquee-row">
+      <div class="marquee-track">
+        <div class="marquee-group reverse">
+          <img src="company6.png" alt="Company 6" class="company-logo size-md">
+          <img src="company7.png" alt="Company 7" class="company-logo size-lg no-select">
+          <img src="company8.png" alt="Company 8" class="company-logo size-sm">
+          <img src="company9.png" alt="Company 9" class="company-logo size-md">
+          <img src="company6.png" alt="Company 6" class="company-logo size-md">
+          <img src="company7.png" alt="Company 7" class="company-logo size-lg no-select">
+          <img src="company8.png" alt="Company 8" class="company-logo size-sm">
+          <img src="company9.png" alt="Company 9" class="company-logo size-md">
+        </div>
+        <div class="marquee-group reverse" aria-hidden="true">
+          <img src="company6.png" alt="Company 6" class="company-logo size-md">
+          <img src="company7.png" alt="Company 7" class="company-logo size-lg no-select">
+          <img src="company8.png" alt="Company 8" class="company-logo size-sm">
+          <img src="company9.png" alt="Company 9" class="company-logo size-md">
+          <img src="company6.png" alt="Company 6" class="company-logo size-md">
+          <img src="company7.png" alt="Company 7" class="company-logo size-lg no-select">
+          <img src="company8.png" alt="Company 8" class="company-logo size-sm">
+          <img src="company9.png" alt="Company 9" class="company-logo size-md">
         </div>
       </div>
     </div>
@@ -546,52 +747,155 @@ footer{padding:1.75rem 4rem;background:var(--black);border-top:1px solid rgba(25
 
 <div class="divider"></div>
 
-<!-- ACHIEVEMENTS -->
-<section id="achievements" class="sec">
+<!-- PROJECTS -->
+<section id="projects" class="sec">
   <div class="sec-inner">
-    <div class="ach-head">
+    <div class="projects-head">
       <div>
-        <div class="sec-label reveal">Achievements</div>
-        <h2 class="sec-title reveal rd1">Milestones<br>that <em>matter.</em></h2>
+        <div class="sec-label reveal">Portfolio &amp; Builds</div>
+        <h2 class="sec-title reveal rd1">Featured <em>projects.</em></h2>
       </div>
-      <p class="sec-desc reveal rd2">A track record built across technology, leadership, sport, and the stage.</p>
+      <p class="sec-desc reveal rd2">Selected client platforms, AI SaaS systems, browser agents, open-source utilities, and web applications I've engineered and deployed.</p>
     </div>
-    <div class="ach-list">
-      <div class="ach-row reveal">
-        <div class="ach-n">01</div>
-        <div class="ach-c"><div class="ach-title">Hackathon Winner</div><p class="ach-desc">Competed and won at hackathons — building functional, innovative solutions under intense time pressure alongside high-performing teams.</p></div>
-        <span class="ach-tag">Hacking</span>
-      </div>
-      <div class="ach-row reveal rd1">
-        <div class="ach-n">02</div>
-        <div class="ach-c"><div class="ach-title">Chief Organiser — Major Event</div><p class="ach-desc">Led end-to-end organisation of a flagship event — from planning and partnerships to on-ground execution for hundreds of attendees.</p></div>
-        <span class="ach-tag">Events</span>
-      </div>
-      <div class="ach-row reveal rd2">
-        <div class="ach-n">03</div>
-        <div class="ach-c"><div class="ach-title">Hackathon Mentor</div><p class="ach-desc">Mentored emerging builders at youth tech hackathons — helping teams shape ideas, validate MVPs, and build with purpose and clarity.</p></div>
-        <span class="ach-tag">Mentoring</span>
-      </div>
-      <div class="ach-row reveal rd3">
-        <div class="ach-n">04</div>
-        <div class="ach-c"><div class="ach-title">Founded & Scaled Retain Agency</div><p class="ach-desc">Built Retain from the ground up — now actively helping real businesses grow customer LTV with autonomous AI systems.</p></div>
-        <span class="ach-tag">Founding</span>
-      </div>
-      <div class="ach-row reveal rd4">
-        <div class="ach-n">05</div>
-        <div class="ach-c"><div class="ach-title">MD of ElevateSphere Initiatives</div><p class="ach-desc">Grew ESI's reach as MD — building structured programmes, events, and mentorship systems that open real doors for ambitious youth.</p></div>
-        <span class="ach-tag">Leadership</span>
-      </div>
-      <div class="ach-row reveal rd1">
-        <div class="ach-n">06</div>
-        <div class="ach-c"><div class="ach-title">Multi-Sport Team Athlete</div><p class="ach-desc">Active player across basketball, kabaddi, and table tennis — representing discipline, competitive grit, and team strategy on the field.</p></div>
-        <span class="ach-tag">Sports</span>
-      </div>
+
+    <div class="project-list">
+      <!-- Project 01: Retain -->
+      <a href="https://retain.solven.app/home/" target="_blank" rel="noopener noreferrer" class="project-row reveal rd1">
+        <div class="p-index">01</div>
+        <div class="p-identity">
+          <div class="p-main-title">Retain</div>
+          <div class="p-type-tag">AI Agency · Customer Retention</div>
+        </div>
+        <div class="p-content">
+          <p class="p-summary">An AI-first retention agency &amp; autonomous employee platform deploying intelligent agents to maximize customer lifetime value (LTV), lower CAC, and synchronize CRM engagement pipelines.</p>
+          <div class="p-chips">
+            <span class="p-chip">AI Employees</span>
+            <span class="p-chip">CRM Sync</span>
+            <span class="p-chip">LLM Automation</span>
+            <span class="p-chip">Retention Engine</span>
+          </div>
+        </div>
+        <div class="p-action">
+          <span>Visit Agency</span>
+          <span class="p-action-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Project 02: Thoryn AI -->
+      <a href="https://thorynai.com/" target="_blank" rel="noopener noreferrer" class="project-row reveal rd2">
+        <div class="p-index">02</div>
+        <div class="p-identity">
+          <div class="p-main-title">Thoryn AI</div>
+          <div class="p-type-tag">SaaS · AI Platform</div>
+        </div>
+        <div class="p-content">
+          <p class="p-summary">Modern AI software-as-a-service platform engineered to streamline intelligent enterprise workflows, harness generative intelligence, and deliver automated intelligence at scale.</p>
+          <div class="p-chips">
+            <span class="p-chip">SaaS</span>
+            <span class="p-chip">AI Workflows</span>
+            <span class="p-chip">Generative Models</span>
+            <span class="p-chip">Full-Stack</span>
+          </div>
+        </div>
+        <div class="p-action">
+          <span>Live Platform</span>
+          <span class="p-action-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Project 03: Thoryn Browser (Coming Soon) -->
+      <a href="https://www.thorynai.com/browser.html" target="_blank" rel="noopener noreferrer" class="project-row reveal rd3">
+        <div class="p-index">03</div>
+        <div class="p-identity">
+          <div class="p-main-title">Thoryn Browser</div>
+          <div class="p-badge-soon"><span class="badge-dot-soon"></span>Coming Soon · Local MCP</div>
+        </div>
+        <div class="p-content">
+          <p class="p-summary">An autonomous AI-controlled browser integrated with local Model Context Protocol (MCP) tooling — executing complex multi-step web navigation, research, and data workflows locally.</p>
+          <div class="p-chips">
+            <span class="p-chip">AI Browser</span>
+            <span class="p-chip">Local MCP</span>
+            <span class="p-chip">Autonomous Agent</span>
+            <span class="p-chip">Web Automation</span>
+          </div>
+        </div>
+        <div class="p-action">
+          <span>Preview Project</span>
+          <span class="p-action-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Project 04: TraQ -->
+      <a href="https://github.com/solven-app/TraQ" target="_blank" rel="noopener noreferrer" class="project-row reveal rd1">
+        <div class="p-index">04</div>
+        <div class="p-identity">
+          <div class="p-main-title">TraQ</div>
+          <div class="p-type-tag">Open Source · Productivity Tracker</div>
+        </div>
+        <div class="p-content">
+          <p class="p-summary">Open-source personal productivity and habit tracker application built alongside specialized agent skills for detailed progress logging, focus metrics, and performance analytics.</p>
+          <div class="p-chips">
+            <span class="p-chip">Open Source</span>
+            <span class="p-chip">Agent Skill</span>
+            <span class="p-chip">Habit Tracking</span>
+            <span class="p-chip">Analytics</span>
+          </div>
+        </div>
+        <div class="p-action">
+          <span>GitHub Repo</span>
+          <span class="p-action-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Project 05: Enosis Solutions -->
+      <a href="https://enosisltd.com/" target="_blank" rel="noopener noreferrer" class="project-row reveal rd2">
+        <div class="p-index">05</div>
+        <div class="p-identity">
+          <div class="p-main-title">Enosis Solutions</div>
+          <div class="p-type-tag">Client Work · Web Engineering</div>
+        </div>
+        <div class="p-content">
+          <p class="p-summary">Engineered and developed the official corporate web presence for Enosis Solutions, focusing on responsive layout architecture, modern corporate design standards, and smooth interactions.</p>
+          <div class="p-chips">
+            <span class="p-chip">Frontend Dev</span>
+            <span class="p-chip">UI/UX</span>
+            <span class="p-chip">Corporate</span>
+            <span class="p-chip">Performance</span>
+          </div>
+        </div>
+        <div class="p-action">
+          <span>View Website</span>
+          <span class="p-action-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Project 06: Invoiza -->
+      <a href="https://invoiza.solven.app/" target="_blank" rel="noopener noreferrer" class="project-row reveal rd3">
+        <div class="p-index">06</div>
+        <div class="p-identity">
+          <div class="p-main-title">Invoiza</div>
+          <div class="p-type-tag">Web App · FinTech Tool</div>
+        </div>
+        <div class="p-content">
+          <p class="p-summary">Fast, client-side invoice generator tool enabling freelancers and agencies to design, customize, calculate taxes, and export clean PDF invoices in seconds.</p>
+          <div class="p-chips">
+            <span class="p-chip">Invoice Generator</span>
+            <span class="p-chip">PDF Export</span>
+            <span class="p-chip">Web App</span>
+            <span class="p-chip">Productivity</span>
+          </div>
+        </div>
+        <div class="p-action">
+          <span>Launch Tool</span>
+          <span class="p-action-arrow">→</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
+
 
 <!-- SPORTS -->
 <section id="sports" class="sec">
@@ -756,7 +1060,7 @@ const cur=document.getElementById('cur'),curf=document.getElementById('curf');
 let mx=0,my=0,fx=0,fy=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
 (function af(){fx+=(mx-fx)*.13;fy+=(my-fy)*.13;curf.style.left=fx+'px';curf.style.top=fy+'px';requestAnimationFrame(af)})();
-document.querySelectorAll('a,button,.gallery-card').forEach(el=>{
+document.querySelectorAll('a,button,.gallery-card,.company-logo,.project-row').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';curf.style.width='48px';curf.style.height='48px'});
   el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';curf.style.width='32px';curf.style.height='32px'});
 });
@@ -772,8 +1076,47 @@ ham.addEventListener('click',()=>mob.classList.add('open'));
 mc.addEventListener('click',()=>mob.classList.remove('open'));
 mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mob.classList.remove('open')));
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}}));
+// Hash navigation & Smooth scroll
+function scrollToHash(hash, smooth = true) {
+  if (!hash || hash === '#') return;
+  const target = document.querySelector(hash);
+  if (target) {
+    target.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
+    target.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    if (target.classList.contains('reveal')) target.classList.add('in');
+  }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const hash = a.getAttribute('href');
+    if (hash === '#') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.pushState(null, '', window.location.pathname);
+      return;
+    }
+    const target = document.querySelector(hash);
+    if (target) {
+      e.preventDefault();
+      scrollToHash(hash, true);
+      history.pushState(null, '', hash);
+    }
+  });
+});
+
+function handleInitialHash() {
+  if (window.location.hash) {
+    setTimeout(() => {
+      scrollToHash(window.location.hash, true);
+    }, 150);
+  }
+}
+window.addEventListener('DOMContentLoaded', handleInitialHash);
+window.addEventListener('load', handleInitialHash);
+window.addEventListener('hashchange', () => {
+  scrollToHash(window.location.hash, true);
+});
 
 // Scroll reveal
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
